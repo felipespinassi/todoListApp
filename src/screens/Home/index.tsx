@@ -33,8 +33,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626",
     color: "#808080",
     marginRight: 5,
+    borderRadius: 5,
+    height: 40,
+    width: 300,
   },
   button: {
     backgroundColor: "#1E6F9F",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
   },
 });
