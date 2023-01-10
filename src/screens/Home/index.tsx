@@ -39,7 +39,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626",
     width: "100%",
     height: 300,
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
+
   inputRow: {
     flexDirection: "row",
   },
