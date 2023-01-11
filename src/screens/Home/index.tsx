@@ -19,6 +19,10 @@ export default function Home() {
     setTarefas((prevstate) => [...prevstate, tarefa]);
     setTarefa("");
   }
+
+  function onRemoveTask(tarefa: string) {
+    setTarefas(() => tarefas.filter((task) => task !== tarefa));
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -46,7 +50,7 @@ export default function Home() {
         >
           <View style={styles.viewCriadas}>
             <Text style={styles.textCriadas}>Criadas</Text>
-            <Text style={styles.numberCriadas}>0</Text>
+            <Text style={styles.numberCriadas}>{tarefas.length}</Text>
           </View>
           <View style={styles.viewConcluidas}>
             <Text style={styles.textConcluidas}>Concluídas</Text>
@@ -78,9 +82,14 @@ export default function Home() {
           )}
           data={tarefas}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <Tarefas key={item} tarefa={item} />}
+          renderItem={({ item }) => (
+            <Tarefas
+              onRemoveTask={() => onRemoveTask(item)}
+              key={item}
+              item={item}
+            />
+          )}
         />
-        <Tarefas tarefas={tarefas} />
       </View>
     </View>
   );
