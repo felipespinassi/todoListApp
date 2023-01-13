@@ -64,7 +64,6 @@ export default function Home() {
             paddingTop: 20,
           }}
         />
-
         <FlatList
           ListEmptyComponent={() => (
             <View style={styles.taskManager}>
