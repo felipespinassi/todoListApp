@@ -1,12 +1,17 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-export function Tarefas({ item, onRemoveTask }: any) {
+export function Tarefas({ item, onRemoveTask, onFinishTask, setTeste }: any) {
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <BouncyCheckbox fillColor="#5E60CE" />
-        <Text style={styles.text}>{item}</Text>
+      <View>
+        <BouncyCheckbox
+          onPress={() => {
+            setTeste(item), onFinishTask();
+          }}
+          text={item}
+          fillColor="#5E60CE"
+        />
       </View>
       <TouchableOpacity onPress={() => onRemoveTask()}>
         <Image source={require("../../../assets/Layer2.png")} />

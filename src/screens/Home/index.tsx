@@ -14,10 +14,17 @@ import { Tarefas } from "../../components/Tarefas";
 export default function Home() {
   const [tarefa, setTarefa] = useState("");
   const [tarefas, setTarefas] = useState<string[]>([]);
+  const [tarefaConcluida, setTarefaConcluida] = useState<string[]>([]);
+  const [teste, setTeste] = useState("");
 
   function onTaskAdd() {
     setTarefas((prevstate) => [...prevstate, tarefa]);
     setTarefa("");
+  }
+
+  function onFinishTask(tarefa: string) {
+    setTarefaConcluida((prevstate) => [...prevstate, teste]);
+    console.log(tarefaConcluida);
   }
 
   function onRemoveTask(tarefa: string) {
@@ -54,7 +61,9 @@ export default function Home() {
           </View>
           <View style={styles.viewConcluidas}>
             <Text style={styles.textConcluidas}>Concluídas</Text>
-            <Text style={styles.numberConcluidas}>0</Text>
+            <Text style={styles.numberConcluidas}>
+              {tarefaConcluida.length}
+            </Text>
           </View>
         </View>
         <View
@@ -83,6 +92,8 @@ export default function Home() {
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <Tarefas
+              setTeste={setTeste}
+              onFinishTask={onFinishTask}
               onRemoveTask={() => onRemoveTask(item)}
               key={item}
               item={item}
