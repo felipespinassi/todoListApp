@@ -7,13 +7,13 @@ export function Tarefas({ item, onRemoveTask, onFinishTask, setTeste }: any) {
       <View>
         <BouncyCheckbox
           onPress={() => {
-            setTeste(item), onFinishTask();
+            onFinishTask();
           }}
           text={item}
           fillColor="#5E60CE"
         />
       </View>
-      <TouchableOpacity onPress={() => onRemoveTask()}>
+      <TouchableOpacity style={{ padding: 10 }} onPress={() => onRemoveTask()}>
         <Image source={require("../../../assets/Layer2.png")} />
       </TouchableOpacity>
     </View>

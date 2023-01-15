@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Alert,
   Button,
   FlatList,
   Image,
@@ -15,20 +16,45 @@ export default function Home() {
   const [tarefa, setTarefa] = useState("");
   const [tarefas, setTarefas] = useState<string[]>([]);
   const [tarefaConcluida, setTarefaConcluida] = useState<string[]>([]);
-  const [teste, setTeste] = useState("");
 
   function onTaskAdd() {
+    if (tarefas.includes(tarefa)) {
+      return Alert.alert(
+        "participante existe",
+        "Já existe um participante com esse nome"
+      );
+    }
     setTarefas((prevstate) => [...prevstate, tarefa]);
     setTarefa("");
   }
 
   function onFinishTask(tarefa: string) {
-    setTarefaConcluida((prevstate) => [...prevstate, teste]);
-    console.log(tarefaConcluida);
+    if (!tarefaConcluida.includes(tarefa)) {
+      setTarefaConcluida((prevstate) => [...prevstate, tarefa]);
+      console.log(tarefaConcluida);
+    } else {
+      setTarefaConcluida(() =>
+        tarefaConcluida.filter((task) => task !== tarefa)
+      );
+    }
   }
 
   function onRemoveTask(tarefa: string) {
-    setTarefas(() => tarefas.filter((task) => task !== tarefa));
+    Alert.alert("Remover", `Remover a tarefa ?`, [
+      {
+        text: "sim",
+        onPress: () => {
+          setTarefas(() => tarefas.filter((task) => task !== tarefa));
+          setTarefaConcluida(() =>
+            tarefaConcluida.filter((task) => task !== tarefa)
+          );
+        },
+      },
+      {
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
   }
   return (
     <View style={styles.container}>
@@ -92,8 +118,7 @@ export default function Home() {
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <Tarefas
-              setTeste={setTeste}
-              onFinishTask={onFinishTask}
+              onFinishTask={() => onFinishTask(item)}
               onRemoveTask={() => onRemoveTask(item)}
               key={item}
               item={item}
@@ -121,6 +146,7 @@ const styles = StyleSheet.create({
 
   inputRow: {
     flexDirection: "row",
+    justifyContent: "center",
     position: "absolute",
     top: 220,
     zIndex: 2,
@@ -131,7 +157,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     borderRadius: 5,
     padding: 10,
-    width: 300,
+    width: "80%",
     borderColor: "#5E60CE",
     fontSize: 20,
   },
