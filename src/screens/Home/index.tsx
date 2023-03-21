@@ -18,13 +18,18 @@ export default function Home() {
   const [tarefaConcluida, setTarefaConcluida] = useState<string[]>([]);
 
   function onTaskAdd() {
-    if (tarefas.includes(tarefa)) {
-      return Alert.alert(
-        "participante existe",
-        "Já existe um participante com esse nome"
-      );
+    if (tarefa.length === 0) {
+      Alert.alert("Participante ", "Adicione um participante");
+    } else {
+      if (tarefas.includes(tarefa)) {
+        return Alert.alert(
+          "participante existe",
+          "Já existe um participante com esse nome"
+        );
+      }
+      setTarefas((prevstate) => [...prevstate, tarefa]);
     }
-    setTarefas((prevstate) => [...prevstate, tarefa]);
+
     setTarefa("");
   }
 

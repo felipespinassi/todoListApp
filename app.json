@@ -4,10 +4,10 @@
     "slug": "app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Logo.png",
+    "icon": "./assets/todoList.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Logo.png",
+      "image": "./assets/todoList.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Logo.png",
+        "foregroundImage": "./assets/todoList.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.spinassi.app"
